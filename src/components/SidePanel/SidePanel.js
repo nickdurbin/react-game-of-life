@@ -3,7 +3,8 @@ import Button from '../Buttons/Button'
 
 function SidePanel() {
   return (
-    <div>
+    <div className="btn-wrapper">
+      <Button />
       <Button />
     </div>
   )
