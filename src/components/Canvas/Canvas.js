@@ -1,28 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sketch from 'react-p5';
 
 function Canvas() {
+	let [arr, setArr] = useState([])
+	let [alive, setAlive] = useState(false)
 
-  let y = 0;
-  let direction = '^';
+	useEffect(() => {
+		setArr()
+	}, [arr])
+
+	const handleClick = () => {
+		
+		setAlive(true)
+	}
+
+	const twoArray = (cols, rows) => {
+		let arr = new Array(cols);
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = new Array(rows);
+		}
+		return arr
+	}
+
+	let cols;
+	let rows;
+	let grid;
+	let res = 40;
 
   return (
     <div className='canvas-wrapper'>
       <Sketch          
 					setup={(p5, parentRef) => {
 						p5.createCanvas(800, 400).parent(parentRef);
+						cols = 800 / res;
+						rows = 400 / res;
+						grid = twoArray(cols, rows);
+						for (let i=0; i < cols; i++) {
+							for (let j=0; j < rows; j++) {
+								grid[i][j] = Math.floor(Math.random(2))
+							}
+						}
 					}}
 					draw={p5 => {
-						p5.background(0);
-            p5.fill(255, y * 1.3, 0);
-            p5.ellipse(p5.width / 2, y, 50);
-            p5.ellipse(p5.width / 4, y, 100);
-						if (y > p5.height) direction = '';
-						if (y < 0) {
-							direction = '^';
+						p5.background(100);
+            for (let i=0; i < cols; i++) {
+							for (let j=0; j < rows; j++) {
+								let x = i * res;
+								let y = j * res;
+								if (grid[i][j] === 1) {
+									p5.fill(255)
+									p5.stroke(0)
+									p5.rect(x, y, res-1, res-1)
+								}
+							}
 						}
-						if (direction === '^') y += 8;
-						else y -= 4;
 					}}
 				/>
     </div>
