@@ -9,8 +9,8 @@ function Canvas() {
 		setArr()
 	}, [arr])
 
-	const handleClick = () => {
-		
+	const handleClick = e => {
+		e.preventDefault()
 		setAlive(true)
 	}
 
@@ -37,7 +37,7 @@ function Canvas() {
 						grid = twoArray(cols, rows);
 						for (let i=0; i < cols; i++) {
 							for (let j=0; j < rows; j++) {
-								grid[i][j] = Math.floor(Math.random(2))
+								grid[i][j] = 1
 							}
 						}
 					}}
