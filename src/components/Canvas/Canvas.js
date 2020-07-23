@@ -25,15 +25,15 @@ function Canvas() {
 	let cols;
 	let rows;
 	let grid;
-	let res = 40;
+	let res = 20;
 
   return (
     <div className='canvas-wrapper'>
       <Sketch          
 					setup={(p5, parentRef) => {
-						p5.createCanvas(800, 400).parent(parentRef);
-						cols = 800 / res;
-						rows = 400 / res;
+						p5.createCanvas(800, 600).parent(parentRef);
+						cols = 1000 / res;
+						rows = 1000 / res;
 						grid = twoArray(cols, rows);
 						for (let i=0; i < cols; i++) {
 							for (let j=0; j < rows; j++) {
